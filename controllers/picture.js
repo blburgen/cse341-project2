@@ -19,21 +19,24 @@ exports.create = (req, res) => {
     location: req.body.location,
   });
   // Save Picture in the database
-  picture
-    .save(picture)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while creating the Picture.',
+  if (req.header('apiKey') === apiKey) {
+    picture
+      .save(picture)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+            err.message || 'Some error occurred while creating the Picture.',
+        });
       });
-    });
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  }
 };
 
 exports.findAll = (req, res) => {
-  console.log(req.header('apiKey'));
   if (req.header('apiKey') === apiKey) {
     Picture.find(
       {},
@@ -92,70 +95,68 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
-  Picture.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Picture with id=${id}. Maybe Picture was not found!`,
+  if (req.header('apiKey') === apiKey) {
+    Picture.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update Picture with id=${id}. Maybe Picture was not found!`,
+          });
+        } else res.send({ message: 'Picture was updated successfully.' });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: 'Error updating Picture with id=' + id,
         });
-      } else res.send({ message: 'Picture was updated successfully.' });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: 'Error updating Picture with id=' + id,
       });
-    });
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  }
 };
 
 // // Delete a Picture with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Picture.findByIdAndRemove(id)
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot delete Picture with id=${id}. Maybe Picture was not found!`,
+  if (req.header('apiKey') === apiKey) {
+    Picture.findByIdAndRemove(id)
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot delete Picture with id=${id}. Maybe Picture was not found!`,
+          });
+        } else {
+          res.send({
+            message: 'Picture was deleted successfully!',
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: 'Could not delete Picture with id=' + id,
         });
-      } else {
-        res.send({
-          message: 'Picture was deleted successfully!',
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: 'Could not delete Picture with id=' + id,
       });
-    });
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  }
 };
 
 // // Delete all Pictures from the database.
 exports.deleteAll = (req, res) => {
-  Picture.deleteMany({})
-    .then((data) => {
-      res.send({
-        message: `${data.deletedCount} Pictures were deleted successfully!`,
+  if (req.header('apiKey') === apiKey) {
+    Picture.deleteMany({})
+      .then((data) => {
+        res.send({
+          message: `${data.deletedCount} Pictures were deleted successfully!`,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+            err.message || 'Some error occurred while removing all picture.',
+        });
       });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while removing all picture.',
-      });
-    });
-};
-
-// Find all published Pictures
-exports.findAllPublished = (req, res) => {
-  Picture.find({ published: true })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while retrieving picture.',
-      });
-    });
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  }    
 };

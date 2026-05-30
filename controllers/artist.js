@@ -19,21 +19,24 @@ exports.create = (req, res) => {
     year: req.body.year,
   });
   // Save Artist in the database
-  artist
-    .save(artist)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while creating the Artist.',
+  if (req.header('apiKey') === apiKey) {
+    artist
+      .save(artist)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+            err.message || 'Some error occurred while creating the Artist.',
+        });
       });
-    });
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  }
 };
 
 exports.findAll = (req, res) => {
-  console.log(req.header('apiKey'));
   if (req.header('apiKey') === apiKey) {
     Artist.find(
       {},
@@ -92,70 +95,68 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
-  Artist.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Artist with id=${id}. Maybe Artist was not found!`,
+  if (req.header('apiKey') === apiKey) {
+    Artist.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot update Artist with id=${id}. Maybe Artist was not found!`,
+          });
+        } else res.send({ message: 'Artist was updated successfully.' });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: 'Error updating Artist with id=' + id,
         });
-      } else res.send({ message: 'Artist was updated successfully.' });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: 'Error updating Artist with id=' + id,
       });
-    });
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  }
 };
 
 // // Delete a Artist with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Artist.findByIdAndRemove(id)
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot delete Artist with id=${id}. Maybe Artist was not found!`,
+  if (req.header('apiKey') === apiKey) {
+    Artist.findByIdAndRemove(id)
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot delete Artist with id=${id}. Maybe Artist was not found!`,
+          });
+        } else {
+          res.send({
+            message: 'Artist was deleted successfully!',
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: 'Could not delete Artist with id=' + id,
         });
-      } else {
-        res.send({
-          message: 'Artist was deleted successfully!',
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: 'Could not delete Artist with id=' + id,
       });
-    });
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  }
 };
 
 // // Delete all Artists from the database.
 exports.deleteAll = (req, res) => {
-  Artist.deleteMany({})
-    .then((data) => {
-      res.send({
-        message: `${data.deletedCount} Artists were deleted successfully!`,
+  if (req.header('apiKey') === apiKey) {
+    Artist.deleteMany({})
+      .then((data) => {
+        res.send({
+          message: `${data.deletedCount} Artists were deleted successfully!`,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+            err.message || 'Some error occurred while removing all artist.',
+        });
       });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while removing all artist.',
-      });
-    });
-};
-
-// Find all published Arists
-exports.findAllPublished = (req, res) => {
-  Arist.find({ published: true })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || 'Some error occurred while retrieving artist.',
-      });
-    });
+  } else {
+    res.send('Invalid apiKey, please read the documentation.');
+  }
 };

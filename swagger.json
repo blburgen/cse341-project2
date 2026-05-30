@@ -34,6 +34,11 @@
         "description": "",
         "parameters": [
           {
+            "name": "apiKey",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
@@ -43,7 +48,7 @@
                   "example": "any"
                 },
                 "picture_id": {
-                  "example": "number"
+                  "example": "any number"
                 },
                 "description": {
                   "example": "any"
@@ -69,6 +74,13 @@
       },
       "delete": {
         "description": "",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -117,6 +129,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
@@ -141,6 +158,11 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
             "type": "string"
           }
         ],
@@ -180,6 +202,11 @@
         "description": "",
         "parameters": [
           {
+            "name": "apiKey",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
@@ -189,13 +216,13 @@
                   "example": "any"
                 },
                 "artist_id": {
-                  "example": "number"
+                  "example": "any number"
                 },
                 "location": {
                   "example": "any"
                 },
                 "year": {
-                  "example": "number"
+                  "example": "4 digit number"
                 }
               }
             }
@@ -215,6 +242,13 @@
       },
       "delete": {
         "description": "",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -263,6 +297,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
@@ -288,6 +327,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
@@ -299,16 +343,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
           }
         }
       }
