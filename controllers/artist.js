@@ -43,8 +43,7 @@ exports.findAll = (req, res) => {
         artist_id: 1,
         name: 1,
         location: 1,
-        description: 1,
-        location: 1,
+        year: 1,
         _id: 0,
       }
     )
