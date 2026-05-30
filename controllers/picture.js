@@ -5,7 +5,7 @@ const apiKey = process.env.apiKey;
 
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name) {
+  if (!req.body.name | !req.body.picture_id | !req.body.description | !req.body.location) {
     res.status(400).send({ message: 'Content can not be empty!' });
     return;
   }
