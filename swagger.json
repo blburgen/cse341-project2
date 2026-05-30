@@ -141,11 +141,11 @@
             "schema": {
               "type": "object",
               "properties": {
-                "picture_id": {
-                  "example": "any number"
-                },
                 "name": {
                   "example": "any"
+                },
+                "picture_id": {
+                  "example": "any number"
                 },
                 "description": {
                   "example": "any"
@@ -330,11 +330,11 @@
             "schema": {
               "type": "object",
               "properties": {
-                "artist_id": {
-                  "example": "any number"
-                },
                 "name": {
                   "example": "any"
+                },
+                "artist_id": {
+                  "example": "any number"
                 },
                 "location": {
                   "example": "any"

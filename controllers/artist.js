@@ -5,7 +5,7 @@ const apiKey = process.env.apiKey;
 
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name) {
+  if (!req.body.name | !req.body.year | !req.body.artist_id | !req.body.location) {
     res.status(400).send({ message: 'Content can not be empty!' });
     return;
   }
@@ -85,6 +85,7 @@ exports.findOne = (req, res) => {
 
 // // Update a Artist by the id in the request
 exports.update = (req, res) => {
+  // Validate request
   if (!req.body) {
     return res.status(400).send({
       message: 'Data to update can not be empty!',
@@ -92,16 +93,17 @@ exports.update = (req, res) => {
   }
 
   const id = req.params.id;
-  const artist = {
+  const artist = new Artist({
     artist_id: req.body.artist_id,
     name: req.body.name,
     location: req.body.location,
     year: req.body.year,
-  }; 
+  }); 
 
   if (req.header('apiKey') === apiKey) {
     Artist.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
       .then((data) => {
+        res.send(data);
         if (!data) {
           res.status(404).send({
             message: `Cannot update Artist with id=${id}. Maybe Artist was not found!`,
@@ -110,7 +112,7 @@ exports.update = (req, res) => {
       })
       .catch((err) => {
         res.status(500).send({
-          message: 'Error updating Artist with id=' + id,
+          message: err.message || 'Error updating Artist with id=' + id,
         });
       });
   } else {

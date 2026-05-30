@@ -111,7 +111,7 @@ exports.update = (req, res) => {
       })
       .catch((err) => {
         res.status(500).send({
-          message: 'Error updating Picture with id=' + id,
+          message: err.message || 'Error updating Picture with id=' + id,
         });
       });
   } else {
