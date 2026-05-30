@@ -43,7 +43,7 @@
                   "example": "any"
                 },
                 "picture_id": {
-                  "example": "any"
+                  "example": "number"
                 },
                 "description": {
                   "example": "any"
@@ -153,16 +153,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api-docs": {
-      "get": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
           }
         }
       }
