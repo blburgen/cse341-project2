@@ -5,7 +5,7 @@
     "description": "Picture Api",
     "version": "1.0.0"
   },
-  "host": "https://cse341-projecttwo.onrender.com",
+  "host": "cse341-projecttwo.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
@@ -43,7 +43,7 @@
                   "example": "any"
                 },
                 "picture_id": {
-                  "example": "any"
+                  "example": "number"
                 },
                 "description": {
                   "example": "any"
@@ -189,13 +189,13 @@
                   "example": "any"
                 },
                 "artist_id": {
-                  "example": "any"
+                  "example": "number"
                 },
                 "location": {
                   "example": "any"
                 },
                 "year": {
-                  "example": "any"
+                  "example": "4 digit number"
                 }
               }
             }
