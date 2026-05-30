@@ -222,7 +222,7 @@
                   "example": "any"
                 },
                 "year": {
-                  "example": "4 digit number"
+                  "example": "any number"
                 }
               }
             }
