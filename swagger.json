@@ -5,7 +5,7 @@
     "description": "Picture Api",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "https://cse341-projecttwo.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",
@@ -44,7 +44,7 @@
                   "example": "any"
                 },
                 "picture_id": {
-                  "example": "any"
+                  "example": "number"
                 },
                 "description": {
                   "example": "any"
