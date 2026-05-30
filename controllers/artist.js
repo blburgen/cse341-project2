@@ -15,8 +15,8 @@ exports.create = (req, res) => {
   const artist = new Artist({
     artist_id: req.body.artist_id,
     name: req.body.name,
-    description: req.body.description,
     location: req.body.location,
+    year: req.body.year,
   });
   // Save Artist in the database
   artist
