@@ -92,6 +92,12 @@ exports.update = (req, res) => {
   }
 
   const id = req.params.id;
+  const artist = {
+    artist_id: req.body.artist_id,
+    name: req.body.name,
+    location: req.body.location,
+    year: req.body.year,
+  }; 
 
   if (req.header('apiKey') === apiKey) {
     Artist.findByIdAndUpdate(id, req.body, { useFindAndModify: false })

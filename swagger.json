@@ -134,6 +134,27 @@
             "name": "apiKey",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "picture_id": {
+                  "example": "any number"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -302,6 +323,27 @@
             "name": "apiKey",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "artist_id": {
+                  "example": "any number"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "year": {
+                  "example": "any number"
+                }
+              }
+            }
           }
         ],
         "responses": {

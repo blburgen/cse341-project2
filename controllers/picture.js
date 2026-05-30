@@ -93,6 +93,12 @@ exports.update = (req, res) => {
   }
 
   const id = req.params.id;
+  const picture = {
+    picture_id: req.body.picture_id,
+    name: req.body.name,
+    description: req.body.description,
+    location: req.body.location,
+  };
 
   if (req.header('apiKey') === apiKey) {
     Picture.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
