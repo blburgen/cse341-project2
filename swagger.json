@@ -8,6 +8,7 @@
   "host": "cse341-projecttwo.onrender.com",
   "basePath": "/",
   "schemes": [
+    "http",
     "https"
   ],
   "paths": {
@@ -195,7 +196,7 @@
                   "example": "any"
                 },
                 "year": {
-                  "example": "4 digit number"
+                  "example": "number"
                 }
               }
             }
@@ -299,6 +300,16 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }
