@@ -4,7 +4,7 @@ const artist = require('./artist');
 
 
 routes.use('/pictures', picture);
-routes.ust('/artists', artist);
+routes.use('/artists', artist);
 
 
 routes.use('/', require('./swagger'));
