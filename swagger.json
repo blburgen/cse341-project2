@@ -43,7 +43,7 @@
                   "example": "any"
                 },
                 "picture_id": {
-                  "example": "number"
+                  "example": "any"
                 },
                 "description": {
                   "example": "any"
