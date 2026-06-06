@@ -4,9 +4,13 @@ module.exports = (mongoose) => {
     mongoose.Schema(
       {
         artist_id: Number,
-        name: String,
-        location: String,
-        year: Number,
+        first_name: String,
+        middle_name: String,
+        last_name: String,
+        birth_location: String,
+        death_location: String,
+        birth_year: Number,
+        death_year: Number,
       },
     )
   );
