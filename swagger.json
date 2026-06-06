@@ -233,16 +233,28 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "first_name": {
+                  "example": "any"
+                },
+                "middle_name": {
+                  "example": "any"
+                },
+                "last_name": {
                   "example": "any"
                 },
                 "artist_id": {
                   "example": "any number"
                 },
-                "location": {
+                "birth_location": {
                   "example": "any"
                 },
-                "year": {
+                 "death_location": {
+                  "example": "any"
+                },
+                "birth_year": {
+                  "example": "any number"
+                },
+                "death_year": {
                   "example": "any number"
                 }
               }
@@ -330,16 +342,28 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": {
+                "first_name": {
+                  "example": "any"
+                },
+                "middle_name": {
+                  "example": "any"
+                },
+                "last_name": {
                   "example": "any"
                 },
                 "artist_id": {
                   "example": "any number"
                 },
-                "location": {
+                "birth_location": {
                   "example": "any"
                 },
-                "year": {
+                 "death_location": {
+                  "example": "any"
+                },
+                "birth_year": {
+                  "example": "any number"
+                },
+                "death_year": {
                   "example": "any number"
                 }
               }
