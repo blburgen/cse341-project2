@@ -5,7 +5,7 @@ const apiKey = process.env.apiKey;
 
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name | !req.body.year | !req.body.artist_id | !req.body.location) {
+  if (!req.body.last_name | !req.body.birth_year | !req.body.artist_id | !req.body.birth_location) {
     res.status(400).send({ message: 'Content can not be empty!' });
     return;
   }
@@ -13,9 +13,13 @@ exports.create = (req, res) => {
   // Create a Artist
   const artist = new Artist({
     artist_id: req.body.artist_id,
-    name: req.body.name,
-    location: req.body.location,
-    year: req.body.year,
+    first_name: req.body.first_name,
+    middle_name: req.body.middle_name,
+    last_name: req.body.last_name,
+    birth_location: req.body.birth_location,
+    birth_year: req.body.birth_year,
+    death_location: req.body.death_location,
+    death_year: req.body.death_year,
   });
   // Save Artist in the database
   if (req.header('apiKey') === apiKey) {
@@ -41,9 +45,13 @@ exports.findAll = (req, res) => {
       {},
       {
         artist_id: 1,
-        name: 1,
-        location: 1,
-        year: 1,
+        first_name: 1,
+        middle_name: 1,
+        last_name: 1,
+        birth_location: 1,
+        birth_year: 1,
+        death_location: 1,
+        death_year: 1,
         _id: 0,
       }
     )
@@ -95,9 +103,13 @@ exports.update = (req, res) => {
   const id = req.params.id;
   const artist = new Artist({
     artist_id: req.body.artist_id,
-    name: req.body.name,
-    location: req.body.location,
-    year: req.body.year,
+    first_name: req.body.first_name,
+    middle_name: req.body.middle_name,
+    last_name: req.body.last_name,
+    birth_location: req.body.birth_location,
+    birth_year: req.body.birth_year,
+    death_location: req.body.death_location,
+    death_year: req.body.death_year,
   }); 
 
   if (req.header('apiKey') === apiKey) {
